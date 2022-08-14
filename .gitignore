@@ -1,6 +1,9 @@
 # My Additions
 #
 code/
+*.gif
+
+
 # Logs
 logs
 *.log
