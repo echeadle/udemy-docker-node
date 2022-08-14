@@ -1,0 +1,7 @@
+
+services:
+  web:
+    image: sample-01
+    build: .
+    ports:
+      - "3000-3000"
