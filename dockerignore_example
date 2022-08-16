@@ -1,0 +1,12 @@
+.git/
+.gitignore
+docker-compose*.yml
+
+# When running node
+node_modules
+npm-debug
+
+# When running django
+
+
+# When running nginx
