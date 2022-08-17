@@ -34,6 +34,8 @@ services:
       context: result
     ports:
       - '5001:80'
+    volumes:
+      - ./result:/app
     networks:
       - backend
     depends_on:
