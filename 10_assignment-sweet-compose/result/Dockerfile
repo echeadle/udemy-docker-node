@@ -5,7 +5,7 @@ WORKDIR /app
 RUN npm install -g nodemon
 COPY package*.json /app/
 RUN npm install \
- && npm ls \
+ # && npm ls \
  && npm cache clean --force \
  && mv /app/node_modules /node_modules
 COPY . /app

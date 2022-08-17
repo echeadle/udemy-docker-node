@@ -1,12 +1,12 @@
 version: '2.4'
 
 services:
- traefik:
+  traefik:
     image: traefik:1.7-alpine
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - "80:80"
+      - "8080:80"
     command:
       - --docker
       - --docker.domain=traefik
@@ -16,7 +16,10 @@ services:
     labels:
       - traefik.port=8080
       - traefik.frontend.rule=Host:traefik.localhost
-
+    networks:
+      - backend
+      - frontend
+  
   redis:
     image: redis:alpine
     networks:
@@ -54,10 +57,10 @@ services:
       context: result
     command: nodemon --inspect=0.0.0.0:9229 server.js
     environment:
-      NODE_ENV=development
+      - NODE_ENV=development
     ports:
       - '5001:80'
-      - '9229:9229
+      - '9229:9229'
     volumes:
       - ./result:/app
     networks:
@@ -76,7 +79,7 @@ services:
       - frontend
       - backend
     depends_on:
-      db:
+      db:
         condition: service_healthy
       redis:
         condition: service_healthy
